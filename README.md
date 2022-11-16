@@ -9,24 +9,26 @@ import { RunService } from "@rbxts/services"
     Tag: "Rainbow"
 })
 export class Rainbow extends TagComponent<Part> {
-    public UpdateConnection?: RBXScriptConnection
+    public ResetColor!: Color3
 
     public Speed = 100
     public Hue = 0
 
     public Start() {
-        this.UpdateConnection = RunService.RenderStepped.Connect((DeltaTime: number) => {
+        this.ResetColor = this.Instance.Color
+
+        this.Trove.add(RunService.RenderStepped.Connect((DeltaTime: number) => {
             this.Instance.Color = Color3.fromHSV(this.Hue/360, 1, 1)
             this.Hue += DeltaTime * this.Speed
 
             if(this.Hue > 360) {
                 this.Hue = 0
             }
-        })
-    }
+        }))
 
-    public Stop() {
-        this.UpdateConnection?.Disconnect()
+        this.Trove.add(() => {
+            this.Instance.Color = this.ResetColor
+        })
     }
 }
 ```
