@@ -1,0 +1,47 @@
+{
+  "name": "@rbxts/component",
+  "version": "1.0.0",
+  "main": "out/init.lua",
+  "author": {
+    "name": "typechecked",
+    "email": "me@typechecked.dev",
+    "url": "https://typechecked.dev"
+  },
+  "repository": "github:cmumme/rbxts-component",
+  "license": "MIT",
+  "scripts": {
+    "build": "rbxtsc -p tsconfig.build.json",
+    "lint": "yarn eslint ./src",
+    "test": "yarn mocha -r ts-node/register 'tests/**/*.spec.ts'",
+    "watch": "rbxtsc -w",
+    "prepublishOnly": "yarn run lint && yarn run test && yarn run build"
+  },
+  "types": "out/index.d.ts",
+  "files": [
+    "out",
+    "!**/*.tsbuildinfo"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rbxts/compiler-types": "^1.3.3-types.1",
+    "@rbxts/fitumi": "^1.0.11",
+    "@rbxts/types": "^1.0.647",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.27.0",
+    "eslint-plugin-roblox-ts": "^0.0.34",
+    "mocha": "^10.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "@rbxts/services": "^1.5.1",
+    "@rbxts/trove": "^1.3.0"
+  }
+}
