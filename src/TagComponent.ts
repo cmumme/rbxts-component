@@ -11,13 +11,13 @@ export class TagComponent<T extends Instance = Instance> {
     protected Trove = new Trove()
 
     public constructor(
-        public Instance: T,
+        public Object: T,
         public Tag: string
     ) {
-        this.Trove.attachToInstance(this.Instance)
+        this.Trove.attachToInstance(this.Object)
 
         this.Trove.add(CollectionService.GetInstanceRemovedSignal(this.Tag).Connect((Instance) => {
-            if(Instance !== this.Instance) return
+            if(Instance !== this.Object) return
 
             this.Trove.destroy()
         }))
@@ -27,10 +27,10 @@ export class TagComponent<T extends Instance = Instance> {
         })
 
         this.Trove.add(() => {
-            Components.World.get(this.Instance)?.forEach((Component, Constructor) => {
+            Components.World.get(this.Object)?.forEach((Component, Constructor) => {
                 if(Component !== this) return
 
-                Components.World.get(this.Instance)?.delete(Constructor)
+                Components.World.get(this.Object)?.delete(Constructor)
             })
         })
 
