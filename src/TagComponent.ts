@@ -3,6 +3,7 @@ import { Trove } from "@rbxts/trove"
 import { Components } from "./Manager"
 
 export interface TagComponent {
+    Initialize?(): void
     Start?(): void
     Stop?(): void
 }
@@ -34,7 +35,12 @@ export class TagComponent<T extends Instance = Instance> {
             })
         })
 
-        this.Start && this.Start()
+        task.defer(() => {
+            this.Initialize && this.Initialize()
+            task.defer(() => {
+                this.Start && this.Start()
+            })
+        })
     }
 
     public Destroy() {

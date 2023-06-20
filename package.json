@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/component",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "out/init.lua",
   "author": {
     "name": "typechecked",
@@ -41,6 +41,7 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
+    "@rbxts/experimental-reflect": "^1.0.0",
     "@rbxts/services": "^1.5.1",
     "@rbxts/trove": "^1.3.0"
   }
